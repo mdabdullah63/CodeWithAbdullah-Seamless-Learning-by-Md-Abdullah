@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Connection</title>
+  <link rel="shortcut icon" href="mylogo.png" type="image/x-icon">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #e0eafc, #cfdef3);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column;
+      padding: 2rem;
+      transition: background 0.5s ease;
+    }
+
+    button {
+      background-color: #0077cc;
+      color: white;
+      padding: 0.6rem 1.2rem;
+      margin-top: 1.5rem;
+      border-radius: 30px;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+
+    section, #loading {
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+      padding: 2rem;
+      background: white;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      margin-top: 1.5rem;
+      display: none;
+    }
+
+    section h2, #loading h2 {
+      font-size: 2rem;
+      color: #0077cc;
+      margin-bottom: 1rem;
+    }
+
+    #loading h2 {
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 1rem;
+      }
+
+      button {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+      }
+
+      section, #loading {
+        padding: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Loading Section: shown on load -->
+  <div id="loading">
+    <h2>⚠️ Work is under process...</h2>
+    <button onclick="goBackToMain()">← Go Back</button>
+  </div>
+
+  <!-- Main Page: hidden initially -->
+  <section id="mainpage">
+    <h2>Main Page</h2>
+    <p>Welcome to the main section of your site. Click below to explore features.</p>
+    <button onclick="goToFeatures()">View Features</button>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features">
+    <h2>Features</h2>
+    <p>This is the features section. Highlight your key tools or services here.</p>
+    <button onclick="goBackToMain()">← Go Back</button>
+  </section>
+
+  <script>
+    // Show "under process" message on page load
+    window.onload = function () {
+      document.getElementById('loading').style.display = 'block';
+    };
+
+    function goToFeatures() {
+      document.getElementById('mainpage').style.display = 'none';
+      document.getElementById('features').style.display = 'none';
+      const loading = document.getElementById('loading');
+      loading.style.display = 'block';
+
+      setTimeout(() => {
+        loading.style.display = 'none';
+        document.getElementById('features').style.display = 'block';
+      }, 1500);
+    }
+
+    function goBackToMain() {
+      // Redirect directly to index.html when "Go Back" clicked
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>
